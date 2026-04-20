@@ -13,7 +13,7 @@ public class FantasyCalculator {
 
     // Method to calculate the points
     public static int calculatePoints(PlayerStats stats) {
-        int r = 0;
+        int result = 0;
         
         int minutes = stats.minutes;
         int goals = stats.goals;
@@ -22,122 +22,122 @@ public class FantasyCalculator {
         boolean red = stats.redCard;
         int saves = stats.saves;
         int goals_against = stats.goalsAgainst;
-        char result = stats.matchResult;
+        char match_result = stats.matchResult;
         String position = stats.position;
 
         // --- GOALKEEPER LOGIC ---
         if (position.equals("PORTERO")) {
             
             if (minutes > 0 && minutes < 60) {
-                r = r + 3;
+                result = result + 3;
             } else if (minutes >= 60) {
-                r = r + 5;
+                result = result + 5;
             }
 
             for (int i = 0; i < goals; i++) {
-                r = r + 5;
+                result = result + 5;
             }
 
-            r = r + (assistances * 6);
+            result = result + (assistances * 6);
 
             // 1 point per save
-            r = r + saves; 
+            result = result + saves; 
             
             if (goals_against == 0) {
-                r = r + 5; 
+                result = result + 5; 
             } else if (goals_against == 1) {
-                r = r + 3;
+                result = result + 3;
             } else if (goals_against == 2) {
-                r = r + 1;
+                result = result + 1;
             }
 
-            if (yellow == true) r = r - 3; 
-            if (red == true) r = r - 5;
+            if (yellow == true) result = result - 3; 
+            if (red == true) result = result - 5;
             
-            if (result == 'G') {
-                r = r + 5;
-            } else if (result == 'E') {
-                r = r + 2;
+            if (match_result == 'G') {
+                result = result + 5;
+            } else if (match_result == 'E') {
+                result = result + 2;
             }
 
         // --- DEFENDER LOGIC ---
         } else if (position.equals("DEFENSA")) {
             if (minutes > 0 && minutes < 60) {
-                r = r + 3;
+                result = result + 3;
             } else if (minutes >= 60) {
-                r = r + 5;
+                result = result + 5;
             }
 
             for (int i = 0; i < goals; i++) {
-                r = r + 5;
+                result = result + 5;
             }
 
-            r = r + (assistances * 6);
+            result = result + (assistances * 6);
 
             if (goals_against == 0) {
-                r = r + 5; 
+                result = result + 5; 
             } else if (goals_against == 1) {
-                r = r + 3;
+                result = result + 3;
             } else if (goals_against == 2) {
-                r = r + 1;
+                result = result + 1;
             }
 
-            if (yellow == true) r = r - 3;
-            if (red == true) r = r - 5;
+            if (yellow == true) result = result - 3;
+            if (red == true) result = result - 5;
             
-            if (result == 'G') {
-                r = r + 5;
-            } else if (result == 'E') {
-                r = r + 2;
+            if (match_result == 'G') {
+                result = result + 5;
+            } else if (match_result == 'E') {
+                result = result + 2;
             }
 
         // --- MIDFIELDER LOGIC ---
         } else if (position.equals("MEDIO")) {
             if (minutes > 0 && minutes < 60) {
-                r = r + 3;
+                result = result + 3;
             } else if (minutes >= 60) {
-                r = r + 5;
+                result = result + 5;
             }
 
             for (int i = 0; i < goals; i++) {
-                r = r + 5;
+                result = result + 5;
             }
 
-            r = r + (assistances * 6);
+            result = result + (assistances * 6);
 
-            if (yellow == true) r = r - 3;
-            if (red == true) r = r - 5;
+            if (yellow == true) result = result - 3;
+            if (red == true) result = result - 5;
             
-            if (result == 'G') {
-                r = r + 5;
-            } else if (result == 'E') {
-                r = r + 2;
+            if (match_result == 'G') {
+                result = result + 5;
+            } else if (match_result == 'E') {
+                result = result + 2;
             }
 
         // --- FORWARD LOGIC ---
         } else if (position.equals("DELANTERO")) {
             if (minutes > 0 && minutes < 60) {
-                r = r + 3;
+                result = result + 3;
             } else if (minutes >= 60) {
-                r = r + 5;
+                result = result + 5;
             }
 
             for (int i = 0; i < goals; i++) {
-                r = r + 6;
+                result = result + 6;
             }
 
-            r = r + (assistances * 5);
+            result = result + (assistances * 5);
 
-            if (yellow == true) r = r - 3;
-            if (red == true) r = r - 5;
+            if (yellow == true) result = result - 3;
+            if (red == true) result = result - 5;
             
-            if (result == 'G') {
-                r = r + 5;
-            } else if (result == 'E') {
-                r = r + 2;
+            if (match_result == 'G') {
+                result = result + 5;
+            } else if (match_result == 'E') {
+                result = result + 2;
             }
         }
 
-        return r;
+        return result;
     }
 }
